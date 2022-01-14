@@ -2,31 +2,36 @@ package main
 
 import (
 	"fmt"
+	"html/template"
 	"net/http"
-)
+) // не понятно что ты импортируешь - какой ужас
 
 type User struct { // аналог класса , какой ужас :(
-	name                  string
-	ages                  uint16
-	money                 int16
-	avg_grades, happiness float64
+	Name                  string
+	Ages                  uint16
+	Money                 int16
+	Avg_grades, Happiness float64
+	Hobbies               []string
 }
 
 func (u User) getAllInfo() string { //спереди указывается используемый тип данных , * это ссылка
 	return fmt.Sprintf("Username is : %s . He is %d years old, and has money : %d",
-		u.name, u.ages, u.money)
+		u.Name, u.Ages, u.Money)
 }
 
 func (u *User) setNewName(newName string) { // * - это ссылка
-	u.name = newName
+	u.Name = newName
 }
 
 func home_page(page http.ResponseWriter, r *http.Request) {
-	bob := User{name: "Bob", ages: 25, money: -50, avg_grades: 4.2, happiness: 0.8}
-	bob.setNewName("Alex")
+	bob := User{Name: "Bob", Ages: 17, Money: -50, Avg_grades: 4.2,
+		Happiness: 0.8, Hobbies: []string{"Footbal", "Skiing", "Dancing"}}
+	//bob.setNewName("Alex")
+	//fmt.Fprintf(page, bob.getAllInfo()) // f-стринга
+	//fmt.Fprintf(page, "<h1>Main text</h1><b>Main text</b>")
 
-	fmt.Fprintf(page, bob.getAllInfo()) // f-стринга
-
+	temp, _ := template.ParseFiles("templates/home_page.html")
+	temp.Execute(page, bob)
 }
 
 func contacts_page(page http.ResponseWriter, r *http.Request) {

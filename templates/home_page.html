@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+</head>
+<body class="d-flex h-100 text-center text-white bg-dark">
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="mb-auto">
+        <div>
+            <h3 class="float-md-start mb-0">Ayrat and Golang</h3>
+            <nav class="nav nav-masthead justify-content-center float-md-end">
+                <a class="nav-link active" aria-current="page" href="/">Главная</a>
+                <a class="nav-link" href="/contacts">Контакты</a>
+                <a class="nav-link" href="#">Про нас</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="px-3">
+        <h1>Главная страница.</h1>
+        <p class="lead">Пользователь: {{ .Name}}
+        <br>Возраст пользователя: {{ .Ages}}<br>
+        <br>Деньги пользователя: {{ .Money}} $<br>
+        </p>
+
+
+        {{ if lt .Ages 18}}
+        <p class="lead">Hi ,man!</p>
+        {{else}}
+        <p class="lead">Это Go, контент 18+ , тебе сюда нельзя</p>
+        {{end}}
+
+
+        {{range .Hobbies}}
+        <p class="lead">
+            <b>{{.}}</b>
+        </p>
+        {{else}}
+        <p class="lead">
+            <b>Нет записей</b>
+        </p>
+        {{end}}
+
+        <!--Все имена из го в шаблонизаторе должны быть в веонхем регистре - пипец :( -->
+        <p class="lead">
+            <a href="#" class="btn btn-black btn-secondary fw-bold border-white bg-white text-black ">Подробнее</a>
+        </p>
+    </main>
+
+    <footer class="mt-auto text-white-50">
+        <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">karimov_ajrat_hh@mail.ru</a>.</p>
+    </footer>
+</div>
+
+
+
+
+
+</body>
+<body>
+
+</body>
+</html>
