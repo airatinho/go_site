@@ -1,0 +1,20 @@
+{{ define "current" }}
+
+{{ template "header"}}
+
+
+<main class="header">
+    <h1>Содержимое статьи</h1>
+    <p class="lead">
+    <h2>{{.Title}}</h2>
+    <div class="alert alert-danger justify-content:space-around" style="background-color:gainsboro;">
+        <h2 style="font-size:1.25rem;">{{.FullText}}</h2>
+    </div>
+    </p>
+</main>
+
+{{ template "footer" }}
+
+{{ end }}
+
+

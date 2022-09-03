@@ -3,17 +3,26 @@
 {{ template "header"}}
 
 
-    <main class="px-3">
-        <h1>Главная страница.</h1>
+    <main class="header">
+        <h1>Новостная лента</h1>
         <p class="lead">
-            Мявк
+            Нынче в топе
         </p>
 
+        {{range .}}
+        <div class="alert alert-danger justify-content:space-around" style="background-color:gainsboro;">
+            <h2>{{.Title}}</h2>
+            <h2>{{.Anons}}</h2>
+            <form action="/current" method="post">
 
-        <!--Все имена из го в шаблонизаторе должны быть в веонхем регистре - пипец :( -->
-        <p class="lead">
-            <a href="#" class="btn btn-black btn-secondary fw-bold border-white bg-white text-black ">Подробнее</a>
-        </p>
+                <a href="/current/{{.Id}}" class="btn btn-danger">Читать</a>
+            </form>
+
+        </div>
+        {{else}}
+        <p class="lead">Статьи ещё не выпущены</p>
+        {{end}}
+
     </main>
 
     {{ template "footer" }}
